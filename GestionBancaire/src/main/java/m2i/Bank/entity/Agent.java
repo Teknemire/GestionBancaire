@@ -3,6 +3,10 @@ package m2i.Bank.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -27,4 +31,15 @@ public class Agent extends Utilisateur {
 		return super.toString()+"Agent [typeAgent=" + typeAgent + "]";
 	}
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idAgence")
+    private Agence agence;
+
+	public Agence getAgence() {
+		return agence;
+	}
+
+	public void setAgence(Agence agence) {
+		this.agence = agence;
+	}
 }
