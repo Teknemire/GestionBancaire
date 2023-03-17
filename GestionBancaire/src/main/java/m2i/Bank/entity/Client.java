@@ -1,8 +1,10 @@
 package m2i.Bank.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -60,8 +62,8 @@ public class Client extends Utilisateur {
 	}
 
     // relations
-//    @OneToOne(mappedBy = "client", cascade = CascadeType.ALL)
-//    private Compte compte;
+    @OneToOne(mappedBy = "client", cascade = CascadeType.ALL)
+    private Compte compte;
 
 
 }
