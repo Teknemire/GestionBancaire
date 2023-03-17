@@ -53,7 +53,7 @@ public class Agence {
 	@OneToMany(mappedBy = "agence")
     private List<Agent> agents;
 	
-	@OneToMany(mappedBy = "compte")
+	@OneToMany(mappedBy = "agence")
     private List<Compte> comptes;
 
 	public List<Agent> getAgents() {

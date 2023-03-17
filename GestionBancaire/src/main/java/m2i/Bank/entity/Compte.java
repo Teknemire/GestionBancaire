@@ -105,7 +105,7 @@ public class Compte {
 	public void setAgence(Agence agence) {
 		this.agence = agence;
 	}
-	@OneToMany(mappedBy = "operation")
+	@OneToMany(mappedBy = "compte")
     private List<Operation> operation;
 	
 }
