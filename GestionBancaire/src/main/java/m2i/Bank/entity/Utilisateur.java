@@ -14,7 +14,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "UTILISATEUR")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "TYPE_UTILISATEUR", discriminatorType = DiscriminatorType.STRING)
+//@DiscriminatorColumn(name = "TYPE_UTILISATEUR", discriminatorType = DiscriminatorType.STRING)
 public class Utilisateur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,16 +26,11 @@ public class Utilisateur {
     
     @Column(name = "nom")
     private String nom;
-
-    public String getEtatCivil() {
-		return etatCivil;
-	}
-
-	public void setEtatCivil(String etatCivil) {
-		this.etatCivil = etatCivil;
-	}
-
-	@Column(name = "prenom")
+    
+    @Column(name="TYPE_UTILISATEUR")
+    private String typeUtilisateur;
+    
+    @Column(name = "prenom")
     private String prenom;
 
     @Column(name = "email")
@@ -49,6 +44,16 @@ public class Utilisateur {
 
     @Column(name = "motDePasse")
     private String motDePasse;
+
+    public String getEtatCivil() {
+		return etatCivil;
+	}
+
+	public void setEtatCivil(String etatCivil) {
+		this.etatCivil = etatCivil;
+	}
+
+	
 
 	public int getIdUtilisateur() {
 		return idUtilisateur;

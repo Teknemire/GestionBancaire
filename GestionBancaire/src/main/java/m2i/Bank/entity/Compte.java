@@ -38,6 +38,10 @@ public class Compte {
 		this.dateOuverture = dateOuverture;
 	}
 	
+	public Compte() {
+		super();
+	}
+
 	public int getNumCompte() {
 		return numCompte;
 	}
@@ -81,22 +85,11 @@ public class Compte {
 		this.dateOuverture = dateOuverture;
 	}
 	
-	//relations
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idUtilisateur")
-	private Client client;
+
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idAgence")
     private Agence agence;
-
-	public Client getClient() {
-		return client;
-	}
-
-	public void setClient(Client client) {
-		this.client = client;
-	}
 
 	public Agence getAgence() {
 		return agence;

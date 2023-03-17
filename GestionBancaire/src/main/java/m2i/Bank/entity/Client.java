@@ -4,6 +4,8 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -23,6 +25,11 @@ public class Client extends Utilisateur {
     @Column(name = "typeCompte")
     private String typeCompte;
 
+	//relations
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "numCompte")
+	private Compte compte;
+	
 	public String getAdresse() {
 		return adresse;
 	}
@@ -61,9 +68,7 @@ public class Client extends Utilisateur {
 				+ ", typeCompte=" + typeCompte + "]";
 	}
 
-    // relations
-    @OneToOne(mappedBy = "client", cascade = CascadeType.ALL)
-    private Compte compte;
+   
 
 
 }

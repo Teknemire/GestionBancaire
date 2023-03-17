@@ -1,6 +1,6 @@
 package m2i.Bank.entity;
 
-import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,7 +18,10 @@ public class Agence {
 	private String adresseAgence;
 	private String emailAgence;
 	private String telAgence;
-	
+
+	public Agence() {
+		super();
+	}
 	public int getIdAgence() {
 		return idAgence;
 	}
@@ -49,26 +52,6 @@ public class Agence {
 	public void setTelAgence(String telAgence) {
 		this.telAgence = telAgence;
 	}
-	
-	@OneToMany(mappedBy = "agence")
-    private List<Agent> agents;
-	
-	@OneToMany(mappedBy = "agence")
-    private List<Compte> comptes;
 
-	public List<Agent> getAgents() {
-		return agents;
-	}
-	public void setAgents(List<Agent> agents) {
-		this.agents = agents;
-	}
-	public List<Compte> getComptes() {
-		return comptes;
-	}
-	public void setComptes(List<Compte> comptes) {
-		this.comptes = comptes;
-	}
-	
-	
 	
 }

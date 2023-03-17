@@ -14,6 +14,10 @@ import jakarta.persistence.Table;
 @DiscriminatorValue("agent")
 public class Agent extends Utilisateur {
     
+	public Agent() {
+		super();
+	}
+
 	@Column(name = "typeAgent")
 	private String typeAgent;
     // getters and setters
@@ -31,7 +35,7 @@ public class Agent extends Utilisateur {
 		return super.toString()+"Agent [typeAgent=" + typeAgent + "]";
 	}
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "idAgence")
     private Agence agence;
 
