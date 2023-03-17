@@ -3,12 +3,15 @@ package m2i.Bank.entity;
 import java.util.Date;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class Operation {
 	
 	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idOperation;
 	private float montantOperation;
 	private Date dateOperation;

@@ -1,12 +1,15 @@
 package m2i.Bank.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class Agence {
 
 	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idAgence;
 	private String nomAgence;
 	private String adresseAgence;

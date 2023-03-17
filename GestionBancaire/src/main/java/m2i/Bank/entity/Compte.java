@@ -3,12 +3,18 @@ package m2i.Bank.entity;
 import java.util.Date;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Compte {
 
 	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int numCompte;
 	private String typeCompte;
 	private float plafondCompte;
@@ -72,6 +78,9 @@ public class Compte {
 		this.dateOuverture = dateOuverture;
 	}
 	
-	
+	//relations
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idUtilisateur")
+	private Client client;
 	
 }
