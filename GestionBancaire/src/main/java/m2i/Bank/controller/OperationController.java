@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import m2i.Bank.entity.Compte;
 import m2i.Bank.entity.Operation;
+import m2i.Bank.repository.CompteRepo;
 import m2i.Bank.repository.OperationRepo;
 
 @RestController
@@ -21,19 +22,45 @@ public class OperationController {
 	@Autowired
 	private OperationRepo opeRepo;
 	
+	@Autowired
+	CompteRepo cptRepo;
+	
 	@GetMapping("/operations")
 	public List<Operation> allOperation(){
 		return opeRepo.findAll();
 	}
 	
 	@GetMapping("/operations/{id}")
-	public Operation allOperation(@PathVariable int id) {
+	public Operation getOperation(@PathVariable int id) {
 		return opeRepo.findById(id).orElseThrow();
 	}
 	
 	@PostMapping("/operations")
 	public Operation allOperation(@RequestBody Operation o) {
 		return opeRepo.save(o);
+	}
+	
+	@PostMapping("/operations/depot")
+	public void operationDepot(@RequestBody Operation o) {
+		Compte cpt = new Compte();
+		cpt = cptRepo.findById(o.getCompte().getNumCompte());
+		cpt.setSolde(cpt.getSolde()+o.getMontantOperation());
+		
+		cptRepo.save(cpt);
+		opeRepo.save(o);
+		
+	}
+	
+	@PostMapping("/operations/retrait")
+	public void operationRetrait(@RequestBody Operation o) {
+		Compte cpt = new Compte();
+		cpt = cptRepo.findById(o.getCompte().getNumCompte());
+		if(o.getMontantOperation()<cpt.getRetraitMax()) {
+			cpt.setSolde(cpt.getSolde()-o.getMontantOperation());
+		}
+		cptRepo.save(cpt);
+		opeRepo.save(o);
+		
 	}
 	
 }

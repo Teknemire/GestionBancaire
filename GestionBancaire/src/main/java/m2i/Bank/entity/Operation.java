@@ -51,9 +51,16 @@ public class Operation {
 	public void setRoleUtilisateur(String roleUtilisateur) {
 		this.roleUtilisateur = roleUtilisateur;
 	}
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne
 	@JoinColumn(name = "numCompte")
 	private Compte compte;
+
+	public Compte getCompte() {
+		return compte;
+	}
+	public void setCompte(Compte compte) {
+		this.compte = compte;
+	}
 	
 	
 

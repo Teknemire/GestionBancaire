@@ -87,7 +87,7 @@ public class Compte {
 	
 
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "idAgence")
     private Agence agence;
 

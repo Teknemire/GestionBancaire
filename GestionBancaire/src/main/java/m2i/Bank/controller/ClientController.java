@@ -28,8 +28,13 @@ public class ClientController {
 		return cliRepo.findAll();
 	}
 	
-	@GetMapping("/clients/{id}")
+	@GetMapping("/client/{id}")
 	public Client getClient(@PathVariable int id){
+		return cliRepo.findById(id).orElseThrow();
+	}
+	
+	@GetMapping("/clients/{id}")
+	public Client getClientByAgent(@PathVariable int id){
 		return cliRepo.findById(id).orElseThrow();
 	}
 	

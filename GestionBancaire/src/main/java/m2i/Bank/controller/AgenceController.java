@@ -30,7 +30,7 @@ public class AgenceController {
 	private AgenceRepo agtRepo;
 	
 	@GetMapping("/agence")
-	public List<Agence> allClient(){
+	public List<Agence> allAgence(){
 		return agtRepo.findAll();
 	}
 	@PostMapping("/agence/agents")
@@ -43,6 +43,10 @@ public class AgenceController {
 		return agtRepo.getAllCompteByAgence(a);
 	}
 	
+	@PostMapping("/agence/clients")
+	public List<Utilisateur> allAgenceClients(@RequestBody Agence a){
+		return agtRepo.getAllClientByAgence(a);
+	}
 	
 	
 	@GetMapping("/agence/{id}")
