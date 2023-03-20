@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,13 +28,25 @@ public class AgentController {
 	}
 	
 	@GetMapping("/agents/{id}")
-	public Agent allAgent(@PathVariable int id) {
+	public Agent getAgent(@PathVariable int id) {
 		return agtRepo.findById(id).orElseThrow();
 	}
 	
 	@PostMapping("/agents")
-	public Agent allAgent(@RequestBody Agent a) {
+	public Agent addAgent(@RequestBody Agent a) {
 		return agtRepo.save(a);
 	}
+	
+	@DeleteMapping("/agents")
+	public void deleteAgent(@RequestBody Agent a) {
+		agtRepo.delete(a);
+	
+	}
+
+	@PutMapping("/agents")
+	public Agent updateAgent(@RequestBody Agent a) {
+		return agtRepo.save(a);
+	}
+
 
 }
