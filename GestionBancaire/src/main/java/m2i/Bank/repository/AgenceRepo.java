@@ -19,5 +19,8 @@ public interface AgenceRepo extends JpaRepository<Agence, Integer>{
 	
 	@Query("Select a, b from Compte a join a.agence b where b = :agence")
 	public List<Compte> getAllCompteByAgence(@Param("agence") Agence a);
+	
+	@Query("Select a, b from Utilisateur a join a.agence b where b = :agence and a.typeUtilisateur ='client'")
+	public List<Utilisateur> getAllClientByAgence(@Param("agence") Agence a);
 
 }

@@ -111,12 +111,15 @@ public class Utilisateur {
 		this.motDePasse = motDePasse;
 	}
 
-	@Override
-	public String toString() {
-		return "Utilisateur [idUtilisateur=" + idUtilisateur + ", etatCivil=" + etatCivil + ", nom=" + nom + ", prenom="
-				+ prenom + ", email=" + email + ", telephone=" + telephone + ", login=" + login + ", motDePasse="
-				+ motDePasse + "]";
+	public String getTypeUtilisateur() {
+		return typeUtilisateur;
 	}
+
+	public void setTypeUtilisateur(String typeUtilisateur) {
+		this.typeUtilisateur = typeUtilisateur;
+	}
+
+
 	
 	
 
