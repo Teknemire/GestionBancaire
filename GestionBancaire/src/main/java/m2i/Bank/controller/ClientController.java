@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import m2i.Bank.entity.Client;
+import m2i.Bank.entity.Utilisateur;
 import m2i.Bank.repository.ClientRepo;
 
 @RestController
@@ -29,17 +30,17 @@ public class ClientController {
 	}
 	
 	@GetMapping("/client/{id}")
-	public Client getClient(@PathVariable int id){
+	public Utilisateur getClient(@PathVariable int id){
 		return cliRepo.findById(id).orElseThrow();
 	}
 	
 	@GetMapping("/clients/{id}")
-	public Client getClientByAgent(@PathVariable int id){
+	public Utilisateur getClientByAgent(@PathVariable int id){
 		return cliRepo.findById(id).orElseThrow();
 	}
 	
 	@PostMapping("/clients")
-	public Client addClient(@RequestBody Client c){
+	public Utilisateur addClient(@RequestBody Client c){
 		return cliRepo.save(c);
 	}
 	
@@ -48,7 +49,7 @@ public class ClientController {
 		 cliRepo.deleteById(id);
 	}
 	@PutMapping("/clients")
-	public Client update(@RequestBody Client c) {
+	public Utilisateur update(@RequestBody Client c) {
 		  return cliRepo.save(c);
 	}
 
