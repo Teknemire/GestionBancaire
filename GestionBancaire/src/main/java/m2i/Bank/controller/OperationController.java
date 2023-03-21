@@ -35,6 +35,10 @@ public class OperationController {
 	public Operation getOperation(@PathVariable int id) {
 		return opeRepo.findById(id).orElseThrow();
 	}
+	@PostMapping("/operations/client")
+	public List<Operation> getOperationbyNumCpt(@RequestBody Compte c) {
+		return opeRepo.getOperationBynumCpt(c);
+	}
 	
 	@PostMapping("/operations")
 	public Operation allOperation(@RequestBody Operation o) {
@@ -63,9 +67,13 @@ public class OperationController {
 		cpt = cptRepo.findById(o.getCompte().getNumCompte());
 		if(o.getMontantOperation()<cpt.getRetraitMax()) {
 			cpt.setSolde(cpt.getSolde()-o.getMontantOperation());
+			cptRepo.save(cpt);
+			opeRepo.save(o);
+		}else {
+			o.setTypeOperation("Retrait maximum autorisé dépassé");
+			opeRepo.save(o);
 		}
-		cptRepo.save(cpt);
-		opeRepo.save(o);
+		
 		
 	}
 	
