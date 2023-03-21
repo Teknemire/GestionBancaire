@@ -26,10 +26,18 @@ public class Client extends Utilisateur {
     private String typeCompte;
 
 	//relations
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne
 	@JoinColumn(name = "numCompte")
 	private Compte compte;
 	
+	public Compte getCompte() {
+		return compte;
+	}
+
+	public void setCompte(Compte compte) {
+		this.compte = compte;
+	}
+
 	public String getAdresse() {
 		return adresse;
 	}
