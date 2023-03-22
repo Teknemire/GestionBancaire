@@ -26,7 +26,7 @@ public class Client extends Utilisateur {
     private String typeCompte;
 
 	//relations
-	@OneToOne
+	@OneToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "numCompte")
 	private Compte compte;
 	
