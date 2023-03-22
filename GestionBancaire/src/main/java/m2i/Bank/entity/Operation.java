@@ -2,6 +2,7 @@ package m2i.Bank.entity;
 
 import java.util.Date;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -51,7 +52,7 @@ public class Operation {
 	public void setRoleUtilisateur(String roleUtilisateur) {
 		this.roleUtilisateur = roleUtilisateur;
 	}
-	@OneToOne
+	@OneToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "numCompte")
 	private Compte compte;
 

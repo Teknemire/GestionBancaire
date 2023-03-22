@@ -3,6 +3,7 @@ package m2i.Bank.entity;
 import java.util.Date;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -98,7 +99,7 @@ public class Compte {
 	public void setAgence(Agence agence) {
 		this.agence = agence;
 	}
-	@OneToMany(mappedBy = "compte")
+	@OneToMany(mappedBy = "compte",cascade = CascadeType.REMOVE)
     private List<Operation> operation;
 	
 }
