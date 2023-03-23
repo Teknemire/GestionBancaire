@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import m2i.Bank.entity.Agent;
+import m2i.Bank.entity.Utilisateur;
 import m2i.Bank.repository.AgentRepo;
 
 @RestController
@@ -33,7 +34,7 @@ public class AgentController {
 	}
 	
 	@PostMapping("/agents")
-	public Agent addAgent(@RequestBody Agent a) {
+	public Utilisateur addAgent(@RequestBody Agent a) {
 		return agtRepo.save(a);
 	}
 	
