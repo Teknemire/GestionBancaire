@@ -38,9 +38,9 @@ public class AgentController {
 		return agtRepo.save(a);
 	}
 	
-	@DeleteMapping("/agents")
-	public void deleteAgent(@RequestBody Agent a) {
-		agtRepo.delete(a);
+	@DeleteMapping("/agents/{id}")
+	public void deleteAgent(@PathVariable int id) {
+		agtRepo.deleteById(id);
 	
 	}
 
