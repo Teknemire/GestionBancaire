@@ -1,5 +1,8 @@
 package m2i.Bank.entity;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.DiscriminatorType;
@@ -109,7 +112,11 @@ public class Utilisateur {
 	}
 
 	public void setMotDePasse(String motDePasse) {
-		this.motDePasse = motDePasse;
+		try {
+	        this.motDePasse = PasswordHasher.hashPassword(motDePasse);
+	    } catch (NoSuchAlgorithmException e) {
+	        e.printStackTrace();
+	    }
 	}
 
 	public String getTypeUtilisateur() {
@@ -118,6 +125,24 @@ public class Utilisateur {
 
 	public void setTypeUtilisateur(String typeUtilisateur) {
 		this.typeUtilisateur = typeUtilisateur;
+	}
+	
+	
+	
+	//Hash mot de passe //************************************************* 
+	
+	public class PasswordHasher {
+
+	    public static String hashPassword(String password) throws NoSuchAlgorithmException {
+	        MessageDigest md = MessageDigest.getInstance("SHA-512");
+	        md.update(password.getBytes());
+	        byte[] bytes = md.digest();
+	        StringBuilder sb = new StringBuilder();
+	        for(int i=0; i< bytes.length ;i++){
+	            sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+	        }
+	        return sb.toString();
+	    }
 	}
 
 
