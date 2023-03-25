@@ -55,7 +55,6 @@ public class OperationController {
 		Compte cpt = new Compte();
 		cpt = cptRepo.findById(o.getCompte().getNumCompte());
 		cpt.setSolde(cpt.getSolde()+o.getMontantOperation());
-		
 		cptRepo.save(cpt);
 		opeRepo.save(o);
 		
@@ -65,14 +64,9 @@ public class OperationController {
 	public void operationRetrait(@RequestBody Operation o) {
 		Compte cpt = new Compte();
 		cpt = cptRepo.findById(o.getCompte().getNumCompte());
-		if(o.getMontantOperation()<cpt.getRetraitMax()) {
-			cpt.setSolde(cpt.getSolde()-o.getMontantOperation());
-			cptRepo.save(cpt);
-			opeRepo.save(o);
-		}else {
-			o.setTypeOperation("Retrait maximum autorisé dépassé");
-			opeRepo.save(o);
-		}
+		cpt.setSolde(cpt.getSolde()-o.getMontantOperation());
+		cptRepo.save(cpt);
+		opeRepo.save(o);
 		
 		
 	}
